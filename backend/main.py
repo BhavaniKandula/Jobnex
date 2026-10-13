@@ -4,9 +4,16 @@ from pydantic import BaseModel
 from database import get_connection
 from analyzer import analyze_resume
 import json
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 class AnalyzeRequest(BaseModel):
     resume_text: str
