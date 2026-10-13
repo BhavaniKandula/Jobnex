@@ -1,3 +1,5 @@
+# changed main.py
+
 #main.py                                                                                                      
 # pyrefly: ignore [missing-import]
 from fastapi import FastAPI, HTTPException
@@ -6,11 +8,23 @@ from pydantic import BaseModel
 from database import get_connection
 from analyzer import analyse_resume
 import json
+# pyrefly: ignore [missing-import]
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
+app.add_middleware ( CORSMiddleware, allow_origins = [ "http://127.0.0.1:5500",
+ "http://localhost:5500",
+ "http://127.0.0.1:5501",
+ "http://localhost:5501"
+],
+allow_credentials = False,
+allow_methods = ["GET", "POST"],
+allow_headers = ["Content-Type"]
+ )
 
-class AnalyzeRequest(BaseModel):
+class analyseRequest(BaseModel):
     resume_text: str
     jd_text: str
 
@@ -18,12 +32,12 @@ class AnalyzeRequest(BaseModel):
 @app.get("/")
 def home():
     return {
-        "message": "Resume Analyzer Backend is Running"
+        "message": "Resume analyser Backend is Running"
     }
 
 
-@app.post("/api/analyze")
-def analyze(request: AnalyzeRequest):
+@app.post("/api/analyse")
+def analyse(request: analyseRequest):
     result = analyse_resume(request.resume_text,request.jd_text)
     print(result)
     connection = None
@@ -32,9 +46,7 @@ def analyze(request: AnalyzeRequest):
 
     try:
         connection = get_connection()
-
         cursor = connection.cursor()
-
         query = """
             INSERT INTO resume_analyzer (resume_text, jd_text, matched_skills, missing_skills, matched_score, suggestions)
             VALUES (%s, %s, %s, %s, %s, %s)
@@ -75,6 +87,8 @@ def analyze(request: AnalyzeRequest):
         "Analysis_Id": analysis_id,
         **result
     }
+
+# Backend API: Retrieve analysis history
 @app.get("/api/analyses")
 def get_analyses():
     connection = None
@@ -96,7 +110,7 @@ def get_analyses():
                 created_At
             FROM resume_analyzer
             ORDER BY Analysis_id DESC
-            LIMIT 2"""
+            LIMIT 3"""
 
         cursor.execute(query)
         analyses = cursor.fetchall()
