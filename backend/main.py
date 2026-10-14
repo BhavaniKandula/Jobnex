@@ -1,6 +1,6 @@
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel,Field,field_validator
 from database import get_connection
 from analyzer import analyze_resume
 import json
@@ -9,10 +9,12 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://127.0.0.1:8000","http://localhost:5500",
+            "http://127.0.0.1:5501",
+            "http://localhost:5500"],
     allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"]
+    allow_methods=["GET","POST"],
+    allow_headers=["Content-Type"]
 )
 
 class AnalyzeRequest(BaseModel):
