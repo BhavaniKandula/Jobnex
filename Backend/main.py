@@ -31,9 +31,14 @@ app.add_middleware(
 )
 
 class analyseRequest(BaseModel):
-    resume_text: str
-    jd_text: str
-
+    resume_text: str=Field(min_length=50)
+    jd_text: str=Field(min_length=50)
+    @field_validator("resume_text","jd_text")
+    @classmethod
+    def not_blank_valid(cls,value):
+        if not value.strip():
+            raise ValueError("Fill without spaces")
+        return value 
 
 @app.get("/")
 def home():
@@ -44,6 +49,7 @@ def home():
 
 @app.post("/api/analyse")
 def analyse(request: analyseRequest):
+
     result = analyse_resume(request.resume_text,request.jd_text)
     print(result)
     connection = None
