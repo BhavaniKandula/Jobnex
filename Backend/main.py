@@ -14,15 +14,21 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-app.add_middleware ( CORSMiddleware, allow_origins = [ "http://127.0.0.1:8000",
- "http://localhost:5500",
- "http://127.0.0.1:5501",
- "http://localhost:5501"
-],
-allow_credentials = False,
-allow_methods = ["GET", "POST"],
-allow_headers = ["Content-Type"]
- )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "http://127.0.0.1:5501",
+        "http://localhost:5501",
+        "*"
+    ],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class analyseRequest(BaseModel):
     resume_text: str
