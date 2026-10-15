@@ -2,6 +2,7 @@
 
 #main.py                                                                                                      
 # pyrefly: ignore [missing-import]
+from logging import Logger
 from fastapi import FastAPI, HTTPException
 # pyrefly: ignore [missing-import]
 from pydantic import BaseModel,Field,field_validator 
@@ -10,7 +11,9 @@ from analyzer import analyse_resume
 import json
 # pyrefly: ignore [missing-import]
 from fastapi.middleware.cors import CORSMiddleware
-
+import logging
+logging.basicConfig(level=logging.INFO)
+logger=logging.getLogger(__name__)
 
 app = FastAPI()
 
@@ -83,6 +86,7 @@ def analyse(request: analyseRequest):
     except Exception as error:
         if connection is not None and connection.is_connected():
             connection.rollback()
+        logger.exception("Failed to save resume analysis")
 
         raise HTTPException(
             status_code=500,

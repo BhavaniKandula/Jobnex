@@ -28,6 +28,11 @@ env/
 *.swp
 *.swo
 
+# Agents and Skills
+.agents/
+.aider-desk/
+skills-lock.json
+
 # OS files
 .DS_Store
 Thumbs.db
