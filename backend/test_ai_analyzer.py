@@ -1,61 +1,51 @@
-import json
+import json 
 from ai_analyzer import analyze_resume_with_ai
 
+resume_text=''' VAMSI PRIYA TAVVA
++91 9908366216 · vamsipriya725@gmail.com · linkedin.com/in/tavva-vamsipriya · github.com/vamsipriya725-arch · Bengaluru, India
+P R O F E S S I O N A L S U M M A R Y
+Python Developer with hands-on experience building FastAPI applications, REST APIs, and LLM-integrated systems, with a strong
+academic foundation in Information Technology. Applies data analysis skills and current industry trends in AI and cloud to deliver tested,
+deployment-ready solutions across full-stack and backend projects.
+E X P E R I E N C E
+Python Developer Intern | Algonex IT Solutions | Apr 2026 – Jun 2026
+• Implemented features across 5+ application modules using Python, FastAPI, React, and SQL, delivering working software aligned
+with project planning milestones each sprint.
+• Built and tested REST APIs for authentication, data management, and CRUD workflows, resolving 20+ functional and edge-case
+issues before deployment.
+• Deployed applications on Vercel and Netlify, configured integrations, and verified application behavior post-deployment.
+SQL AI Fellow | Algonex IT Solutions | Jan 2026 – Apr 2026
+• Delivered 20+ Python scripts and MySQL database modules across a structured 4-month program, meeting 100% of sprint deadlines
+through basic project management practices.
+• Implemented 20+ optimized SQL queries for data extraction, transformation, and CRUD operations on relational databases supporting
+live AI projects.
+• Managed schema design and data operations in MySQL, supporting backend data workflows powering AI model inputs across 3+
+cross-functional project modules.
+P R O J E C T S
+AI Resume Analyzer & Job Match Platform | Python, React, MySQL, LLM, REST API, Git
+• Engineered an LLM-powered analysis module that evaluates resume-JD fit using data analysis techniques, generating match scores,
+skill gap reports, and personalized learning paths.
+• Developed Python REST APIs connecting a React frontend to a MySQL database storing users, resumes, and analysis results; managed
+feature-based Git workflow across the team.
+Event Management Platform | Python, FastAPI, Supabase, Vercel | AIDLC
+• Built a Python/FastAPI platform spanning 5+ modules, integrating Supabase authentication, real-time data synchronization, and
+schema design informed by 10+ user interviews.
+• Validated workflows through 3 feedback iterations, resolving 20+ edge cases before release, demonstrating end-to-end project
+execution from planning to deployment.
+E D U C A T I O N
+Bachelor of Technology in Information Technology | Lakireddy Bali Reddy College of Engineering | 2021
+– May 2025 | CGPA: 8.59
+S K I L L S
+Technical: Python, SQL, JavaScript, FastAPI, REST APIs, React, MySQL, HTML, CSS, Django, Flask, data analysis, data extraction,
+OOP, data structures and algorithms, AIDLC, Git, GitHub, Vercel, Netlify, Streamlit, Supabase
+Tools: Git, GitHub, Vercel, Netlify, Streamlit Community Cloud, Supabase, Antigravity
+C E R T I F I C A T I O N S
+• Python Certification, HackerRank
+• SQL (Basic) Certification, HackerRank
+• Microsoft Certified: Fabric Data Engineer Associate, Microsoft
+• Generative AI Skill Badge, Google Cloud'''
 
-resume_text='''LANKEPALLI KAVERI
-kaverilankepalli@gmail.com | +91 86888 87349
-LinkedIn: linkedin.com/in/kaveri-lankepalli | GitHub: github.com/kaveri-chowdhary
-PROFESSIONAL SUMMARY
-Aspiring Data Analyst with a strong foundation in Python, SQL, MySQL, Excel, Power BI, and data analysis. Hands-on
-experience through academic projects and an internship, with an interest in applying analytical thinking and data-driven
-approaches to business problems.
-TECHNICAL SKILLS
-Programming & Analysis: Python, Pandas, data cleaning & preprocessing
-Databases & Querying: SQL, MySQL
-Visualization & Reporting: Power BI (dashboards), Excel
-Machine Learning: Scikit-learn, feature preparation, classification
-Tools & Other: GitHub, HTML, CSS, JavaScript
-UNIVERSITY PROJECTS
-ML-DRIVEN DYNAMIC TEST ITEM GENERATOR
-• Developed a machine learning-based system to dynamically generate test questions based on selected topics and
-difficulty levels.
-• Implemented data preprocessing and feature preparation to improve the quality and consistency of generated test
-items.
-• Designed the system to generate varied questions dynamically, reducing repetitive and manually created test
-content.
-• Applied machine learning techniques to support automated question generation and classification based on input
-requirements.
-• Technologies: Python, Machine Learning, Pandas, Scikit-learn
-PASSWORD STRENGTH CHECKER
-Oct 2024
-• Designed and developed a Password Strength Checker to evaluate password security based on length, character
-diversity, and pattern complexity.
-• Implemented real-time validation using JavaScript to provide instant feedback on password strength (Weak / Medium
-/ Strong).
-• Technologies: HTML, CSS, JavaScript
-INTERNSHIP EXPERIENCE
-Full Stack Web Developer Intern | MOTION CUT CRAFTING FUTURE’S
-Nov 2024 – Jan 2025
-• Designed and developed responsive user interfaces using HTML, CSS, and JavaScript, ensuring cross-browser
-compatibility and mobile responsiveness.
-• Integrated front-end interfaces with back-end logic, enabling smooth data flow and dynamic content rendering.
-• Implemented form validation, authentication flows, and basic CRUD operations to enhance user interaction.
-EDUCATION
-DHANALAKSHMI SRINIVASAN UNIVERSITY | Trichy, TN
-Bachelor of Technology in Computer Science and Engineering | CGPA: 7.3
-NARAYANA JUNIOR COLLEGE | Andhra Pradesh
-Intermediate: M.P.C | CGPA: 8.9
-SRI NETAJI MSR PILOT HIGH SCHOOL | Andhra Pradesh
-Secondary Education | CGPA: 10
-ACTIVITIES
-2022 – 2026
-Jun 2020 – Mar 2022
-Jun 2019 – Apr 2020
-• Participated in Power BI Workshop by Office Mater, learning dashboard development and visualizations using
-real-time datasets.'''
-
-
-jd_text='''
+jd_text='''Skip to content
 HomeIBM
 IBM Careers
 Login
@@ -113,27 +103,7 @@ Being an IBMer means you’ll be able to learn and develop yourself and your car
 
 Our IBMers are growth minded, always staying curious, open to feedback and learning new information and skills to constantly transform themselves and our company. They are trusted to provide on-going feedback to help other IBMers grow, as well as collaborate with colleagues keeping in mind a team focused approach to include different perspectives to drive exceptional outcomes for our customers. The courage our IBMers have to make critical decisions everyday is essential to IBM becoming the catalyst for progress, always embracing challenges with resources they have to hand, a can-do attitude and always striving for an outcome focused approach within everything that they do.
 
-
-
-Are you ready to be an IBMer?
-
-ABOUT IBM
-IBM’s greatest invention is the IBMer. We believe that through the application of intelligence, reason and science, we can improve business, society and the human condition, bringing the power of an open hybrid cloud and AI strategy to life for our clients and partners around the world.
-
-
-
-Restlessly reinventing since 1911, we are not only one of the largest corporate organizations in the world, we’re also one of the biggest technology and consulting employers, with many of the Fortune 500 companies relying on the IBM Cloud to run their business. 
-
-
-
-At IBM, we pride ourselves on being an early adopter of artificial intelligence, quantum computing and blockchain. Now it’s time for you to join us on our journey to being a responsible technology innovator and a force for good in the world.
-
-IBM is proud to be an equal-opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, gender, gender identity or expression, sexual orientation, national origin, genetics, pregnancy, disability, neurodivergence, age, or other characteristics protected by the applicable law. IBM is also committed to compliance with all fair employment practices regarding citizenship and immigration status.
-
-OTHER RELEVANT JOB DETAILS
 When applying to jobs of your interest, we recommend that you do so for those that match your experience and expertise. Our recruiters advise that you apply to not more than 3 roles in a year for the best candidate experience. For additional information about location requirements, please discuss with the recruiter following submission of your application.
-
-
 Job Title
 Intern / Associate Engineer
 Job ID
@@ -161,34 +131,19 @@ General (daytime)
 Is this role a commissionable/sales incentive based position?
 No
 Apply now
-< Back to search results
-IBM Logo
-Application Info
-Be aware: Recruitment Scams
-Privacy statement
-Learn more about IBM
-Linkedin Logo
-Twitter Logo
-Youtube Logo
-Glassdoor Logo
-Instagram Logo
-Blog Logo
-English
-Contact IBM
-Privacy
-Terms of use
-Accessibility'''
 
-
+'''
 
 result=analyze_resume_with_ai(resume_text,jd_text)
 try:
-    data=json.load(result)
-    print("matchscore:",data["matched_score"])
-    print("matching skills:",data["matched_skills"])
-    print("missing skills:",data["missing_skills"])
-    print("suggestions:",data["suggestions"])
-    print("summary:",data["summary"])
-except(json.JSONDecodeError,KeyError)as error:
+    data=json.loads(result)
+    print("Matchscore:",data["matched_score"])
+    print("Matching skills:",data["matched_skills"])
+    print("Missing skills:",data["missing_skills"])
+    print("Suggestions:",data["suggestions"])
+    print("Summary:",data["summary"])
+except(json.JSONDecodeError,KeyError) as error:
     print("Hey! Fix the json or column names")
     print("Hey! Error is:",error)
+
+

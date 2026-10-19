@@ -3,25 +3,42 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environments
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual Environments
 Algonex/
+Backend/Algonex/
 backend/Algonex/
 venv/
 .venv/
 env/
 ENV/
 
-# Environment variables & local secrets
+# Environment variables
 .env
+.env.*
 .env.local
 
-# IDE / Editor folders
+# IDEs and Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# OS generated files
-.DS_Store
-Thumbs.db
+# Agents and Skills
+.agents/
+.aider-desk/
+skills-lock.json
 
 # Test cache
 .pytest_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
