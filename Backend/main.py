@@ -8,6 +8,7 @@ backend_dir = Path(__file__).resolve().parent
 if str(backend_dir) not in sys.path:
     sys.path.insert(0, str(backend_dir))
 
+# pyrefly: ignore[missing-import]
 from suggestions_resources import create_router      # add with the other imports
              # add right after the CORS middleware
 # Add Backend folder to sys.path so sibling imports work seamlessly
@@ -16,7 +17,9 @@ from suggestions_resources import create_router      # add with the other import
 from fastapi import FastAPI, HTTPException
 # pyrefly: ignore [missing-import]
 from pydantic import BaseModel,Field,field_validator 
+# pyrefly: ignore[missing-import]
 from database import get_connection
+# pyrefly: ignore[missing-import]
 from analyzer import analyse_resume
 import json
 # pyrefly: ignore [missing-import]
@@ -59,6 +62,7 @@ def home():
         "message": "Resume analyser Backend is Running"
     }
 
+# pyrefly: ignore[missing-import]
 from fastapi.responses import Response
 
 @app.get("/favicon.ico", include_in_schema=False)
