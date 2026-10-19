@@ -5,4 +5,5 @@
       "destination": "/api/index.py"
     }
   ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }

@@ -2,11 +2,24 @@
 
 #main.py                                                                                                      
 # pyrefly: ignore [missing-import]
-from logging import Logger
+import sys
+from pathlib import Path
+backend_dir = Path(__file__).resolve().parent
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
+
+# pyrefly: ignore[missing-import]
+from suggestions_resources import create_router      # add with the other imports
+             # add right after the CORS middleware
+# Add Backend folder to sys.path so sibling imports work seamlessly
+
+# pyrefly: ignore [missing-import]
 from fastapi import FastAPI, HTTPException
 # pyrefly: ignore [missing-import]
 from pydantic import BaseModel,Field,field_validator 
+# pyrefly: ignore[missing-import]
 from database import get_connection
+# pyrefly: ignore[missing-import]
 from analyzer import analyse_resume
 import json
 # pyrefly: ignore [missing-import]
@@ -32,7 +45,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+app.include_router(create_router())    
 class analyseRequest(BaseModel):
     resume_text: str=Field(min_length=50)
     jd_text: str=Field(min_length=50)
@@ -84,6 +97,15 @@ def health_check():
         "message": "Resume analyser Backend is Running",
         "status": "ok"
     }
+# pyrefly: ignore[missing-import]
+from fastapi.responses import Response
+
+@app.get("/favicon.ico", include_in_schema=False)
+@app.get("/favicon.png", include_in_schema=False)
+def favicon():
+    return Response(status_code=204)
+
+
 
 
 @app.post("/api/analyse")
@@ -182,3 +204,4 @@ def get_analyses():
 
         if connection is not None and connection.is_connected():
             connection.close()
+

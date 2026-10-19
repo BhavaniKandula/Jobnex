@@ -6,6 +6,11 @@ const status = document.getElementById("status");
 const results = document.getElementById("results");
 const resultData = document.getElementById("result-data");
 
+const isLocalStandalone = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || !window.location.origin.startsWith("http");
+const API_BASE = (isLocalStandalone && window.location.port !== "8000") 
+    ? "http://127.0.0.1:8000" 
+    : "";
+
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -21,6 +26,7 @@ form.addEventListener("submit", async (event) => {
 
         const response = await fetch(
             apiUrl,
+            `${API_BASE}/api/analyse`,
             {
                 method: "POST",
                 headers: {
