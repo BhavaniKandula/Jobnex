@@ -1,6 +1,5 @@
+#insert_test.py                                                                                                               
 from database import get_connection
-
-
 connection = None
 cursor = None
 
@@ -8,15 +7,15 @@ try:
     connection = get_connection()
     cursor = connection.cursor()
 
-    resume_text = "Python developer with Python, SQL and React skills."
-    jd_text = "Looking for a Python developer with SQL and FastAPI."
+    resume = "Python developer with Python, SQL and React skills."
+    jd_text= "Looking for a Python developer with SQL and FastAPI."
 
     query = """
         INSERT INTO resume_analyzer (resume_text, jd_text)
         VALUES (%s, %s)
     """
 
-    cursor.execute(query, (resume_text, jd_text))
+    cursor.execute(query, (resume, jd_text))
     connection.commit()
 
     print("Analysis saved successfully!")

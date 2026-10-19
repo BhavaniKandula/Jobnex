@@ -1,3 +1,4 @@
+
 const form = document.getElementById("analyze-Form");
 const resumeInput = document.getElementById("resume_text");
 const jobDescriptionInput = document.getElementById("jd_text");
