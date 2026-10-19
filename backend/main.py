@@ -1,81 +1,91 @@
+import json
+import logging
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel,Field,field_validator
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field, field_validator
+
 from database import get_connection
 from analyzer import analyze_resume
-import json
-from fastapi.middleware.cors import CORSMiddleware
+from resume_privacy import router as resume_router, redact_text
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# app MUNDU create cheyyali, taruvata router include cheyyali
 app = FastAPI()
+app.include_router(resume_router)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:8000",
-        "http://localhost:8000",
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "http://127.0.0.1:5501",
-        "http://localhost:5501",
-        "*"
-    ],
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
+
 class AnalyzeRequest(BaseModel):
-    resume_text: str
-    jd_text: str
+    resume_text: str = Field(min_length=50)
+    jd_text: str = Field(min_length=50)
+
+    @field_validator("resume_text", "jd_text")
+    @classmethod
+    def not_blank_validate(cls, value):
+        if not value.strip():
+            raise ValueError("fill without spaces")
+        return value
 
 
 @app.get("/")
 def home():
-    return {
-        "message": "Resume Analyzer Backend is Running"
-    }
+    return {"message": "Resume Analyzer Backend is Running"}
 
 
 @app.post("/api/analyze")
 def analyze(request: AnalyzeRequest):
-    result = analyze_resume(request.resume_text,request.jd_text)
-    print(result)
+    # Analysis original text tho chestam, kani DB lo save cheyyadaniki mundu
+    # email/phone/links hide chestam
+    result = analyze_resume(request.resume_text, request.jd_text)
+    safe_resume_text = redact_text(request.resume_text)
+
     connection = None
     cursor = None
     analysis_id = None
 
     try:
         connection = get_connection()
-
         cursor = connection.cursor()
 
         query = """
-            INSERT INTO resume_analyzer (resume_text, jd_text, matched_skills, missing_skills, matched_score, suggestions)
+            INSERT INTO resume_analyzer
+                (resume_text, jd_text, matched_skills, missing_skills, matched_score, suggestions)
             VALUES (%s, %s, %s, %s, %s, %s)
         """
 
         cursor.execute(
-            query, (
-                request.resume_text,
+            query,
+            (
+                safe_resume_text,
                 request.jd_text,
                 json.dumps(result["matched_skills"]),
                 json.dumps(result["missing_skills"]),
                 result["matched_score"],
-                json.dumps(result["suggestions"])
-            )
+                json.dumps(result["suggestions"]),
+            ),
         )
 
         connection.commit()
         analysis_id = cursor.lastrowid
 
-        
-        
     except Exception as error:
         if connection is not None and connection.is_connected():
             connection.rollback()
+        logger.exception("failed to save resume analysis")
 
         raise HTTPException(
             status_code=500,
-            detail="Failed to save analysis"
+            detail="Failed to save analysis",
         ) from error
 
     finally:
@@ -84,10 +94,13 @@ def analyze(request: AnalyzeRequest):
 
         if connection is not None and connection.is_connected():
             connection.close()
+
     return {
         "Analysis_Id": analysis_id,
-        **result
+        **result,
     }
+
+
 # Backend API: Retrieve analysis history
 @app.get("/api/analyses")
 def get_analyses():
@@ -95,14 +108,14 @@ def get_analyses():
     cursor = None
 
     try:
-        # Connect to MySQL
         connection = get_connection()
 
-        # Create a cursor that returns dictionary rows
+        # Dictionary rows return chese cursor
         cursor = connection.cursor(dictionary=True)
 
-        # Fetch the latest 20 analyses
-        query = """SELECT
+        # Latest 20 analyses
+        query = """
+            SELECT
                 Analysis_id,
                 matched_score,
                 matched_skills,
@@ -110,24 +123,27 @@ def get_analyses():
                 created_At
             FROM resume_analyzer
             ORDER BY Analysis_id DESC
-            LIMIT 2"""
+            LIMIT 20
+        """
 
         cursor.execute(query)
         analyses = cursor.fetchall()
 
-        for i in analyses:
+        for row in analyses:
             for field in ("matched_skills", "missing_skills"):
-                value = i[field]
+                value = row[field]
 
                 if isinstance(value, str):
-                    i[field] = json.loads(value)
+                    row[field] = json.loads(value)
 
         return {"analyses": analyses}
 
     except Exception as error:
+        logger.exception("failed to retrieve analyses")
+
         raise HTTPException(
             status_code=500,
-            detail="Failed to retrieve analyses"
+            detail="Failed to retrieve analyses",
         ) from error
 
     finally:
@@ -136,5 +152,3 @@ def get_analyses():
 
         if connection is not None and connection.is_connected():
             connection.close()
-    
-    
