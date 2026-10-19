@@ -43,10 +43,46 @@ class analyseRequest(BaseModel):
             raise ValueError("Fill without spaces")
         return value 
 
+import os
+from fastapi.responses import FileResponse
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+if not os.path.exists(STATIC_DIR):
+    alt_dir = os.path.join(BASE_DIR, "..", "public")
+    if os.path.exists(alt_dir):
+        STATIC_DIR = alt_dir
+    else:
+        STATIC_DIR = os.path.join(BASE_DIR, "..", "Frontend")
+
 @app.get("/")
 def home():
+    index_file = os.path.join(STATIC_DIR, "index.html")
+    if os.path.exists(index_file):
+        return FileResponse(index_file)
     return {
         "message": "Resume analyser Backend is Running"
+    }
+
+@app.get("/style.css")
+def get_style():
+    file_path = os.path.join(STATIC_DIR, "style.css")
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="text/css")
+    raise HTTPException(status_code=404, detail="File not found")
+
+@app.get("/script.js")
+def get_script():
+    file_path = os.path.join(STATIC_DIR, "script.js")
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="application/javascript")
+    raise HTTPException(status_code=404, detail="File not found")
+
+@app.get("/api/health")
+def health_check():
+    return {
+        "message": "Resume analyser Backend is Running",
+        "status": "ok"
     }
 
 
