@@ -86,12 +86,8 @@ def analyse(request: analyseRequest):
     except Exception as error:
         if connection is not None and connection.is_connected():
             connection.rollback()
-        logger.exception("Failed to save resume analysis")
-
-        raise HTTPException(
-            status_code=500,
-            detail="Failed to save analysis"
-        ) from error
+        logger.warning("Could not save to database (running without DB or connection failed): %s", error)
+        analysis_id = None
 
     finally:
         if cursor is not None:
@@ -141,10 +137,8 @@ def get_analyses():
         return {"analyses": analyses}
 
     except Exception as error:
-        raise HTTPException(
-            status_code=500,
-            detail="Failed to retrieve analyses"
-        ) from error
+        logger.warning("Failed to retrieve analyses from database: %s", error)
+        return {"analyses": []}
 
     finally:
         if cursor is not None:

@@ -14,8 +14,13 @@ form.addEventListener("submit", async (event) => {
     results.hidden = true;
 
     try {
+        const apiUrl = (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") &&
+            (window.location.port === "5500" || window.location.port === "5501")
+            ? "http://127.0.0.1:8000/api/analyse"
+            : "/api/analyse";
+
         const response = await fetch(
-            "http://127.0.0.1:8000/api/analyse",
+            apiUrl,
             {
                 method: "POST",
                 headers: {
