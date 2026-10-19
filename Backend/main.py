@@ -2,32 +2,56 @@
 
 #main.py                                                                                                      
 # pyrefly: ignore [missing-import]
+import sys
+from pathlib import Path
+backend_dir = Path(__file__).resolve().parent
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
+
+from suggestions_resources import create_router      # add with the other imports
+             # add right after the CORS middleware
+# Add Backend folder to sys.path so sibling imports work seamlessly
+
+# pyrefly: ignore [missing-import]
 from fastapi import FastAPI, HTTPException
 # pyrefly: ignore [missing-import]
-from pydantic import BaseModel
+from pydantic import BaseModel,Field,field_validator 
 from database import get_connection
 from analyzer import analyse_resume
 import json
 # pyrefly: ignore [missing-import]
 from fastapi.middleware.cors import CORSMiddleware
-
+import logging
+logging.basicConfig(level=logging.INFO)
+logger=logging.getLogger(__name__)
 
 app = FastAPI()
 
-app.add_middleware ( CORSMiddleware, allow_origins = [ "http://127.0.0.1:5500",
- "http://localhost:5500",
- "http://127.0.0.1:5501",
- "http://localhost:5501"
-],
-allow_credentials = False,
-allow_methods = ["GET", "POST"],
-allow_headers = ["Content-Type"]
- )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "http://127.0.0.1:5501",
+        "http://localhost:5501",
+        "*"
+    ],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+app.include_router(create_router())    
 class analyseRequest(BaseModel):
-    resume_text: str
-    jd_text: str
-
+    resume_text: str=Field(min_length=50)
+    jd_text: str=Field(min_length=50)
+    @field_validator("resume_text","jd_text")
+    @classmethod
+    def not_blank_valid(cls,value):
+        if not value.strip():
+            raise ValueError("Fill without spaces")
+        return value 
 
 @app.get("/")
 def home():
@@ -35,9 +59,19 @@ def home():
         "message": "Resume analyser Backend is Running"
     }
 
+from fastapi.responses import Response
+
+@app.get("/favicon.ico", include_in_schema=False)
+@app.get("/favicon.png", include_in_schema=False)
+def favicon():
+    return Response(status_code=204)
+
+
+
 
 @app.post("/api/analyse")
 def analyse(request: analyseRequest):
+
     result = analyse_resume(request.resume_text,request.jd_text)
     print(result)
     connection = None
@@ -71,6 +105,7 @@ def analyse(request: analyseRequest):
     except Exception as error:
         if connection is not None and connection.is_connected():
             connection.rollback()
+        logger.exception("Failed to save resume analysis")
 
         raise HTTPException(
             status_code=500,
@@ -136,3 +171,4 @@ def get_analyses():
 
         if connection is not None and connection.is_connected():
             connection.close()
+
