@@ -15,6 +15,7 @@ from suggestions_resources import create_router      # add with the other import
              # add right after the CORS middleware
 # Add Backend folder to sys.path so sibling imports work seamlessly
 
+# pyrefly: ignore[missing-import]
 from fastapi import FastAPI, HTTPException
 # pyrefly: ignore [missing-import]
 from pydantic import BaseModel, Field, field_validator
@@ -30,9 +31,12 @@ logging.basicConfig(level=logging.INFO)
 logger=logging.getLogger(__name__)
 
 app = FastAPI()
+# pyrefly: ignore[missing-import]
 from interview_prep import router as interview_prep_router
 app.include_router(interview_prep_router)
-
+# pyrefly: ignore[missing-import]
+from chatbot_assistant import create_router as create_chat_router
+app.include_router(create_chat_router())
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

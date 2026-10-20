@@ -132,7 +132,19 @@ class InterviewRequest(BaseModel):
         return self
 
 
-# ---------- Database ----------
+# Built-in fallback links if database is unavailable
+FALLBACK_RESOURCES = {
+    "interview": [
+        {"site_name": "GeeksforGeeks", "site_url": "https://www.geeksforgeeks.org/?q={role}+interview+questions", "difficulty": "all"},
+        {"site_name": "InterviewBit", "site_url": "https://www.interviewbit.com/search/?q={role}", "difficulty": "medium"},
+        {"site_name": "LeetCode Discuss", "site_url": "https://leetcode.com/discuss/interview-question?currentPage=1&orderBy=most_relevant&query={role}", "difficulty": "hard"},
+    ],
+    "coding": [
+        {"site_name": "LeetCode", "site_url": "https://leetcode.com/problemset/all/", "difficulty": "all"},
+        {"site_name": "HackerRank", "site_url": "https://www.hackerrank.com/domains", "difficulty": "easy"},
+    ]
+}
+
 
 def get_links_from_db(role: str, link_type: str = INTERVIEW_TYPE) -> list:
     """Return up to 20 {site_name, site_url, difficulty} rows for the role and link type."""
@@ -147,15 +159,12 @@ def get_links_from_db(role: str, link_type: str = INTERVIEW_TYPE) -> list:
             (role, link_type),
         )
         return cursor.fetchall()
-    except HTTPException:
-        raise
     except Exception as error:
         if connection is not None and connection.is_connected():
             connection.rollback()
-        logger.exception("Failed to read interview links")
-        raise HTTPException(
-            status_code=500, detail="Could not load interview links"
-        ) from error
+        logger.warning("Database unavailable (%s); using fallback interview templates", error)
+        # Use fallback search templates so the API doesn't fail when MySQL is unconfigured
+        return build_search_links(FALLBACK_RESOURCES.get(link_type, []), role)
     finally:
         if cursor is not None:
             cursor.close()
