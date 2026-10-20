@@ -1,0 +1,27 @@
+# Python virtual environments
+backend/Algonex/
+Backend/Algonex/
+venv/
+.venv/
+env/
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Environment & credentials
+.env
+.env.local
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Agent & local tooling files
+.agents/
+.aider-desk/
+skills-lock.json

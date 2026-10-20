@@ -1,4 +1,6 @@
-def analyse_resume(resume_text,jd_text):
+# analyzer.py    
+def analyze_resume(resume_text,jd_text):
+    
     resume_text=resume_text.lower()
     jd_text=jd_text.lower()
     skills = [
@@ -12,7 +14,7 @@ def analyse_resume(resume_text,jd_text):
     matched_skills = []
     missing_skills = []
     suggestions = []
-    
+
     for i in skills:
         if i in resume_text and i in jd_text:
             matched_skills.append(i)
@@ -29,3 +31,5 @@ def analyse_resume(resume_text,jd_text):
         "matched_score": matched_score
     }
 
+
+analyse_resume = analyze_resume
