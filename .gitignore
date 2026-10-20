@@ -1,21 +1,28 @@
-# Python virtual environments
-backend/Algonex/
-Backend/Algonex/
-venv/
-.venv/
-env/
+# Environment variables & secrets
+.env
+*.env
+.env.*
+!.env.example
 
-# Python cache & compiled files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-*.pyc
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+backend/Algonex/
+Backend/Algonex/
 
-# Environment & credentials
-.env
-.env.local
+# Databases
+*.db
+*.sqlite3
+referrals.db
 
-# IDE & OS files
+# IDE & OS
 .vscode/
 .idea/
 .DS_Store

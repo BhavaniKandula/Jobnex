@@ -9,13 +9,13 @@ try:
         load_dotenv(dotenv_path=env_path)
     else:
         load_dotenv()
-except ImportError: 
+except ImportError:
     pass
 
 
 def get_connection():
     return mysql.connector.connect(
-        host=os.getenv("DB_HOST", "localhost"),
+        host=os.getenv("DB_HOST", "127.0.0.1"),
         port=int(os.getenv("DB_PORT", 3306)),
         user=os.getenv("DB_USER", "root"),
         password=os.getenv("DB_PASSWORD", "Algonex@2003"),
