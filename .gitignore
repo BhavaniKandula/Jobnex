@@ -1,9 +1,13 @@
+# Environment variables & secrets
+.env
+*.env
+.env.*
+!.env.example
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
 
 # Distribution / packaging
@@ -34,26 +38,25 @@ env/
 ENV/
 env.bak/
 venv.bak/
+backend/Algonex/
+Backend/Algonex/
 
-# Environment variables & secrets
-.env
-.env.*
-!.env.example
+# Databases
+*.db
+*.sqlite3
+referrals.db
 
-# IDE & Editor settings
+# IDE & OS settings
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# Logs
 *.log
-
-# OS generated files
 .DS_Store
 Thumbs.db
 
-# Agent & workspace settings
+# Agent & local tooling files
 .agents/
+.aider-desk/
 skills-lock.json
 .gemini/

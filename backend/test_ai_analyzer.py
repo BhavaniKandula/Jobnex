@@ -1,82 +1,115 @@
-import json 
-
+import json
 from ai_analyzer import analyze_resume_with_ai
-resume_text='''K.V.L. Bhavani
-+91 8125378548  ·  kandulab43@gmail.com  ·  linkedin.com/in/bhavanikandula  ·  github.com/bhavanikandula  ·  Bengaluru, 
-India
+
+resume_text = """BADIPATI ANIL KUMAR
+Data Analyst  |  SQL  |  Python  |  Power BI  |  Excel
+[Phone Number]  |  [Email Address]  |  [City, State]  |  [LinkedIn URL]  |  [GitHub URL]
+
 PROFESSIONAL SUMMARY
-Python Backend Developer pursuing a B.Tech in Computer Science and Design (2025), with hands-on internship experience building 
-Django web applications, REST APIs, and SQL-backed data pipelines. Skilled in applying academic knowledge to practical projects 
-spanning data analysis, machine learning, and full-stack development, with familiarity with industry trends in AI and hybrid cloud 
-solutions.
-EXPERIENCE
-Python Developer Intern | Algonex IT Solutions | Jun 2025 – Present
-• Reduced data preparation time by 35% by developing 15+ MySQL pipelines using CTEs, stored procedures, and triggers across 
-10,000+ records, demonstrating basic project management through end-to-end ownership of data workflows.
-• Achieved R² > 0.88 by building a scikit-learn regression model trained on 11 rental datasets, then deployed predictions via a Streamlit 
-application integrated with a Pickle-serialized model, delivering real-time business insights.
-• Built and tested RESTful APIs and CRUD applications using Django, FastAPI, and Flask, integrating MySQL and SQLite databases 
-with Git and GitHub for version control and collaborative development.
-Artificial Intelligence Intern | SkillDzire | Dec 2024 – Apr 2025
-• Applied theoretical AI and machine learning concepts from academic programs to practical tasks including data processing with 
-Pandas and NumPy, supporting business operations through actionable dataset analysis.
-• Gained exposure to industry trends in AI and enterprise technology, completing structured training aligned with current developments 
-in Python-based AI development.
-AI / Technical Trainee | TMI E2E Academy, Youth Employability Program | Prior to Dec 2024
-• Completed technical training covering Python fundamentals, OOP, and data structures, translating academic knowledge into foun
-dational software development skills.
+Data Analyst with a B.E. in Computer Science and Engineering (2025) and hands-on experience in SQL, Python, Power BI and Excel. Completed an SQL with Python Developer internship at Algonex IT Solutions and a 10-week AICTE-EduSkills Data Engineering Virtual Internship supported by AWS Academy. Completed Microsoft's Power BI learning series (data preparation, DAX, data modeling, report design) and earned the Kaggle Python Coder badge. Strong in data cleaning, exploratory analysis, dashboard building and turning data into clear business insights. Seeking a Data Analyst role.
+
+TECHNICAL SKILLS
+Data Analysis: Data Cleaning, Data Transformation, Exploratory Data Analysis (EDA), Data Visualization, Dashboards, Reporting, KPI Tracking
+Databases & SQL: SQL, MySQL, Relational Databases, Joins, Aggregations, Subqueries, Database Design
+Programming: Python (Pandas, NumPy, Matplotlib), Machine Learning basics
+BI & Spreadsheets: Power BI (Power Query, DAX, Data Modeling, Report Design, Copilot in Power BI), Microsoft Excel (Formulas, Pivot Tables, Charts)
+Tools & Platforms: Git, GitHub, IBM Watson Studio, IBM watsonx Assistant, Jupyter Notebook, Kaggle
+Soft Skills: Problem Solving, Logical Thinking, Communication, Interpersonal Skills, Teamwork
+
+PROFESSIONAL EXPERIENCE
+SQL with Python Developer Intern  |  Algonex IT Solutions, Bengaluru, Karnataka
+- Wrote SQL queries to extract, filter, join and aggregate data from relational databases for analysis and reporting.
+- Developed Python scripts to clean, transform and analyze data pulled from SQL databases.
+- Applied database concepts such as tables, keys and relationships to keep data organized and consistent.
+- Collaborated with the team to understand requirements and deliver working solutions within deadlines.
+
+Data Engineering Virtual Intern  |  AICTE - EduSkills, supported by AWS Academy  |  Sep 2023 - Nov 2023
+- Completed a 10-week virtual internship covering data engineering and cloud fundamentals on AWS.
+- Earned the AICTE-EduSkills Certificate of Virtual Internship (NEAT Cell, AICTE).
+
 PROJECTS
-Aura Estates Bangalore: Rental Price Analysis and Prediction | Python, MySQL, Pandas, scikit-learn, 
-Streamlit
-• Developed 15+ SQL queries using CTEs and subqueries to extract and transform 10,000+ rental records, reducing data preparation 
-time by 35% and demonstrating basic project management from data ingestion to model deployment.
-Real-Time Facial Attendance Monitoring System | Python, OpenCV, Machine Learning, SQL
-• Automated attendance tracking by implementing facial detection and recognition workflows using OpenCV and ML, integrating SQL 
-for record-keeping and demonstrating application of theoretical knowledge to a practical problem.
-Payment Gateway System | Python, Django, Django REST Framework, MySQL | github.com/BhavaniKan
-dula/Algonex_Payment_System
-• Built a Django backend with REST APIs for payment transactions and CRUD operations on a MySQL database, connected to an 
-HTML/CSS/JavaScript front end, applying full-stack academic training to a production-style project.
+Smart Safety Crackers Factory using IoT and Machine Learning  |  Final-Year Major Project  |  2024 - 2025
+- Designed an IoT-based safety monitoring system for a firecracker manufacturing unit to detect hazardous conditions and raise alerts.
+- Collected and processed sensor data in Python and applied machine learning to identify unsafe conditions.
+- Tools: Python, IoT sensors, Machine Learning.
+
+Virtual Assistant Chatbot  |  IBM watsonx Assistant  |  2024
+- Built and deployed a web-chat virtual assistant on IBM watsonx Assistant with a customized background and greeting.
+- Configured conversation actions and tested the live preview through a shareable web link.
+- Tools: IBM watsonx Assistant, IBM Watson Studio.
+
 EDUCATION
-Bachelor of Technology, Computer Science and Design | Eswar College of Engineering, JNTUK | 2021 – 
-Jun 2025 | CGPA: 7.73
-SKILLS
-Technical: Python, SQL, Django, Django REST Framework, FastAPI, Flask, RESTful API design, CRUD operations, JWT authentication, 
-MySQL, SQLite, Pandas, NumPy, scikit-learn, Streamlit, OpenCV, OOP, data structures and algorithms, DBMS
-Tools: Git, GitHub, Postman, Pickle, debugging, data visualization
+B.E. Computer Science and Engineering  |  Nehru Institute of Engineering and Technology, Coimbatore  |  2021 - 2025
+- Aggregate: 73.4%
+
 CERTIFICATIONS
-• Microsoft DigiSaksham AI Internship Program, Microsoft India
-• Python Full Stack Development Training, JSPiders'''
-jd_text ='''Your role and responsibilities
+- Microsoft Learn - Prepare and Visualize Data with Microsoft Power BI (Oct 2026). Modules: Get Started with Microsoft Data Analytics; Get Data in Power BI; Clean, Transform and Load Data in Power BI; Choose a Power BI Model Framework; Create DAX Calculations in Semantic Models; Design Power BI Reports; Design Effective Reports in Power BI; Enhance Power BI Report Designs for the User Experience; Perform Analytics in Power BI; Prepare Data for Analysis with Power BI; Get Started Building with Power BI; Get Started with Copilot in Power BI.
+- Python Coder Badge - Kaggle (Oct 2026)
+- Data Analytics - LearnTube by CareerNinja, in association with @placementdrive (Mar 2024)
+- IBM Watson Studio - IBM Career Education Program (Aug 2024)
+- Data Engineering Virtual Internship - AICTE-EduSkills, AWS Academy (Nov 2023)
+"""
+
+jd_text = jd_text='''Skip to content
+HomeIBM
+IBM Careers
+Login
+< Back to search results
+Intern / Associate Engineer
+Bangalore, Karnataka, India
+Entry Level
+Email
+X
+LinkedIn
+Apply now
+Introduction
+This is a pre-requisition to screen and assess applicants across roles of IBM for different line of business and can be but not limited to the below units
+
+IT Services & Consulting: Delivers enterprise technology, hybrid cloud solutions, and consulting services. Infrastructure & AI: Focuses on enterprise AI agents, hybrid cloud architecture, and infrastructure innovation
+
+Your role and responsibilities
 Students completing Engineering Degree ( BE/B.Tech/ME/M.Tech) by May 2027 with Computer Science, Electrical and Electronics Specializations/Branch of Studies only can apply•Only Students with a current aggregate of 6/ 60% or above CGPA / Percentage in the highest degree pursuing can apply
 
 Required education
 Bachelor's Degree
 Required technical and professional expertise
-• Exposure to Academic Programs: Currently enrolled at a university or educational institution, or recently completed qualification.
+* Exposure to Academic Programs: Currently enrolled at a university or educational institution, or recently completed qualification.
 
-• Understanding of Business Operations: Familiarity with basic business concepts and processes, gained through academic studies or previous internships.
+* Understanding of Business Operations: Familiarity with basic business concepts and processes, gained through academic studies or previous internships.
 
-• Basic Administrative Skills: Experience with administrative tasks, such as data entry, record-keeping, or document management.
+* Basic Administrative Skills: Experience with administrative tasks, such as data entry, record-keeping, or document management.
 
-• Foundational Communication Skills: Ability to effectively communicate ideas and collaborate with colleagues in a team environment.
+* Foundational Communication Skills: Ability to effectively communicate ideas and collaborate with colleagues in a team environment.
 
-• Application of Theoretical Knowledge: Exposure to applying theoretical concepts and skills learned in an academic setting to practical problems or projects.
+* Application of Theoretical Knowledge: Exposure to applying theoretical concepts and skills learned in an academic setting to practical problems or projects.
 
 
 
 These are basic call outs and actual required skills may differ
 
 Preferred technical and professional experience
-• Familiarity with Industry Trends: Exposure to current industry trends and developments in a specific field, gained through academic studies or personal projects, would be beneficial in this role.
+* Familiarity with Industry Trends: Exposure to current industry trends and developments in a specific field, gained through academic studies or personal projects, would be beneficial in this role.
 
-• Basic Project Management: Experience working on small projects or contributing to group assignments, demonstrating an understanding of project planning and execution principles.
+* Basic Project Management: Experience working on small projects or contributing to group assignments, demonstrating an understanding of project planning and execution principles.
 
-• Data Analysis Skills: Exposure to data analysis tools and techniques, such as data visualization or statistical analysis, would be advantageous in supporting business operations and projects.
+* Data Analysis Skills: Exposure to data analysis tools and techniques, such as data visualization or statistical analysis, would be advantageous in supporting business operations and projects.
 
 These are high-level callouts, and the specific skills required may vary based on the role.
 
-Years of Experience:0 - 0    Job Title
+Years of Experience:0 - 0
+ABOUT BUSINESS UNIT
+IBM Corporate Headquarters (CHQ) team represents a variety of functions such as marketing, finance, legal, operations, HR, and more, all working together to solve some of the world's most complex problems, help our clients achieve success and build collaborative work environments for IBMers.
+YOUR LIFE @ IBM
+In a world where technology never stands still, we understand that, dedication to our clients success, innovation that matters, and trust and personal responsibility in all our relationships, lives in what we do as IBMers as we strive to be the catalyst that makes the world work better.
+
+Being an IBMer means you’ll be able to learn and develop yourself and your career, you’ll be encouraged to be courageous and experiment everyday, all whilst having continuous trust and support in an environment where everyone can thrive whatever their personal or professional background.
+
+
+
+Our IBMers are growth minded, always staying curious, open to feedback and learning new information and skills to constantly transform themselves and our company. They are trusted to provide on-going feedback to help other IBMers grow, as well as collaborate with colleagues keeping in mind a team focused approach to include different perspectives to drive exceptional outcomes for our customers. The courage our IBMers have to make critical decisions everyday is essential to IBM becoming the catalyst for progress, always embracing challenges with resources they have to hand, a can-do attitude and always striving for an outcome focused approach within everything that they do.
+
+When applying to jobs of your interest, we recommend that you do so for those that match your experience and expertise. Our recruiters advise that you apply to not more than 3 roles in a year for the best candidate experience. For additional information about location requirements, please discuss with the recruiter following submission of your application.
+Job Title
 Intern / Associate Engineer
 Job ID
 137023
@@ -102,19 +135,18 @@ Shift
 General (daytime)
 Is this role a commissionable/sales incentive based position?
 No
-Apply'''
-result = analyze_resume_with_ai(resume_text,jd_text)
-try:
-    data = json.loads(result)
-    print("matchscore : " ,data["matched_score"])
-    print("matched skills : " ,data["matched_skills"])
-    print("missing skills : " ,data["missing_skills"])
-    print("suggestions : " ,data["suggestions"])
-    print("Summary :" , data["summary"])
-except(json.JSONDecodeError,KeyError) as error:
-    print("hey! fix the json or column names")
-    print("hey! error is :" , error)
+Apply now
 
-    
-    
-
+'''
+if __name__ == "__main__":
+    result = analyze_resume_with_ai(resume_text, jd_text)
+    try:
+        data = json.loads(result)
+        print("Matchscore:", data["matched_score"])
+        print("Matching skills:", data["matched_skills"])
+        print("Missing skills:", data["missing_skills"])
+        print("Suggestions:", data["suggestions"])
+        print("Summary:", data["summary"])
+    except (json.JSONDecodeError, KeyError) as error:
+        print("Hey! Fix the json or column names")
+        print("Hey! Error is:", error)
