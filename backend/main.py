@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field, field_validator
 from database import get_connection
 from analyzer import analyze_resume
 from resume_privacy import router as resume_router, redact_text
+from filter_logic import router as filter_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -15,6 +16,7 @@ logger = logging.getLogger(__name__)
 # app MUNDU create cheyyali, taruvata router include cheyyali
 app = FastAPI()
 app.include_router(resume_router)
+app.include_router(filter_router)
 
 app.add_middleware(
     CORSMiddleware,
