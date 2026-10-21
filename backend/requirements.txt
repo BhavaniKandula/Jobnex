@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+mysql-connector-python
+python-dotenv
+google-genai
+requests
+httpx
+apscheduler>=3.10,<4
+tzdata
