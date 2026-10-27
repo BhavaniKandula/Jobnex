@@ -160,7 +160,7 @@ The backend will be running at `http://127.0.0.1:8000`. You can also explore int
 
 ---
 
-## 🤝 Contributing bhavanipriyathefgbzbf gkjhdfxfgcvbnbvfxgcvb,nghjc
+## 🤝 Contributing 
 
 Contributions, issues, and feature requests are welcome!  
 Feel free to check out the [issues page](https://github.com/BhavaniKandula/Jobnex/issues).
